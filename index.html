@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio BUT Réseaux et Télécommunications - Rémi Larose</title>
+    <style>
+        /* Variables CSS pour une gestion facile des couleurs */
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #3b82f6;
+            --light-bg: #f8fafc;
+            --dark-bg: #1e293b;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --border-color: #e2e8f0;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --shadow-light: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-medium: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            --shadow-heavy: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--light-bg);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-light);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .navbar h1 {
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            background: var(--accent-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Sections */
+        .section {
+            padding: 6rem 0;
+        }
+
+        .section:first-of-type {
+            margin-top: 80px;
+        }
+
+        .bg-light {
+            background: var(--light-bg);
+        }
+
+        .bg-gradient {
+            background: var(--gradient-1);
+            color: white;
+        }
+
+        .section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Accueil Hero Section */
+        #accueil {
+            background: var(--gradient-1);
+            color: white;
+            text-align: center;
+            padding: 8rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #accueil::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translate(-50px, -50px) rotate(0deg); }
+            100% { transform: translate(-50px, -50px) rotate(360deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Description personnelle */
+        .description-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .photo-container {
+            text-align: center;
+        }
+
+        .photo-placeholder {
+            width: 250px;
+            height: 250px;
+            background: var(--gradient-2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 0 auto;
+            box-shadow: var(--shadow-heavy);
+            transition: transform 0.3s ease;
+        }
+
+        .photo-placeholder:hover {
+            transform: scale(1.05);
+        }
+
+        .info-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: var(--shadow-medium);
+            margin: 2rem 0;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .info-card p {
+            margin-bottom: 0.5rem;
+        }
+
+        .description-details h4 {
+            color: var(--primary-color);
+            margin: 2rem 0 1rem 0;
+            font-size: 1.2rem;
+        }
+
+        /* Objectifs */
+        .objectifs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+
+        .objectif-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: var(--shadow-medium);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .objectif-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-2);
+        }
+
+        .objectif-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-heavy);
+        }
+
+        .objectif-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .objectif-card ul {
+            list-style: none;
+        }
+
+        .objectif-card li {
+            padding: 0.5rem 0;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .objectif-card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--success-color);
+            font-weight: bold;
+        }
+
+        /* SAÉ Styles */
+        .section-intro {
+            text-align: center;
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .sae-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .sae-card {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: var(--shadow-medium);
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .sae-card:hover {
+            box-shadow: var(--shadow-heavy);
+        }
+
+        .sae-card.active {
+            transform: scale(1.02);
+        }
+
+        .sae-header {
+            background: var(--gradient-3);
+            color: white;
+            padding: 1.5rem 2rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sae-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: left 0.5s ease;
+        }
+
+        .sae-header:hover::before {
+            left: 0;
+        }
+
+        .sae-header h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            position: relative;
+            z-index: 2;
+        }
+
+        .dropdown-arrow {
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .sae-content {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.5s ease;
+            opacity: 0;
+        }
+
+        .sae-content.active {
+            padding: 2rem;
+            max-height: 2000px;
+            opacity: 1;
+        }
+
+        .sae-info {
+            background: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .sae-info p {
+            margin-bottom: 0.5rem;
+        }
+
+        .sae-content h4 {
+            color: var(--primary-color);
+            margin: 2rem 0 1rem 0;
+            font-size: 1.1rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .sae-content h5 {
+            color: var(--secondary-color);
+            margin: 1.5rem 0 0.5rem 0;
+        }
+
+        .traces-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .trace-item {
+            background: white;
+            border: 2px solid var(--border-color);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .trace-item:hover {
+            border-color: var(--primary-color);
+            box-shadow: var(--shadow-light);
+        }
+
+        .trace-type {
+            font-size: 1.2rem;
+        }
+
+        .reflexion-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .reflexion-section {
+            background: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            border-left: 4px solid var(--accent-color);
+        }
+
+        /* Projection et bilan */
+        .bilan-sections {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .bilan-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: var(--shadow-medium);
+        }
+
+        .bilan-section h4 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .competences-bilan {
+            display: grid;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .competence-level {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .competence-level span {
+            min-width: 250px;
+            font-weight: 500;
+        }
+
+        .level-bar {
+            flex: 1;
+            height: 8px;
+            background: var(--border-color);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .level-fill {
+            height: 100%;
+            background: var(--gradient-2);
+            border-radius: 4px;
+            transition: width 1s ease;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark-bg);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .description-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .objectifs-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .reflexion-container {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .section h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+                <h1>Portfolio BUT R&T</h1>
+                <ul class="nav-menu">
+                    <li><a href="#accueil" class="nav-link">Accueil</a></li>
+                    <li><a href="#description" class="nav-link">Présentation</a></li>
+                    <li><a href="#objectifs" class="nav-link">Objectifs</a></li>
+                    <li><a href="#sae" class="nav-link">Projets</a></li>
+                    <li><a href="#projection" class="nav-link">Bilan</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Accueil Hero -->
+    <section id="accueil" class="section">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Rémi Larose</h1>
+                <p>Étudiant en BUT Réseaux et Télécommunications</p>
+                <p>IUT Grand Ouest Normandie - Site d'Ifs</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Description personnelle -->
+    <section id="description" class="section">
+        <div class="container">
+            <h2>Présentation personnelle</h2>
+            <div class="description-content">
+                <div class="photo-container">
+                    <img src="data.jpg" alt="Rémi Larose" style="width: 250px; height: 250px; border-radius: 50%; object-fit: cover; box-shadow: var(--shadow-heavy); transition: transform 0.3s ease;">
+                </div>
+                <div class="description-text">
+                    <h3>Qui suis-je ?</h3>
+                    <div class="info-card">
+                        <p><strong>Nom :</strong> Larose Rémi</p>
+                        <p><strong>Formation :</strong> BUT Réseaux et Télécommunications</p>
+                        <p><strong>Année :</strong> 1ère année</p>
+                        <p><strong>Établissement :</strong> IUT Grand Ouest Normandie site Ifs</p>
+                    </div>
+                    <div class="description-details">
+                        <h4>Parcours scolaire</h4>
+                        <p>Bac Technologique en STI2D avec option SIN (Système Informatique et Numérique) en terminale et obtention du BAC avec mention assez bien</p>
+                        
+                        <h4>Motivations</h4>
+                        <p>Je suis motivé à continuer dans les métiers du réseau car j'aime ce que je fais et je suis très content du parcours que j'emprunte</p>
+                        
+                        <h4>Centres d'intérêt</h4>
+                        <p>J'adore le cinéma, la musique et les CTF avec Root Me pour le hacking</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Objectifs -->
+    <section id="objectifs" class="section bg-light">
+        <div class="container">
+            <h2>Objectifs de développement personnels</h2>
+            <div class="objectifs-grid">
+                <div class="objectif-card">
+                    <h3>Objectifs académiques</h3>
+                    <ul>
+                        <li>Maîtriser les 4 compétences du référentiel</li>
+                        <li>Développer une démarche avec des réflexions sur mes apprentissages</li>
+                        <li>Acquérir de l'autonomie</li>
+                        <li>Valider tous les apprentissages critiques pour m'aider</li>
+                    </ul>
+                </div>
+                <div class="objectif-card">
+                    <h3>Objectifs professionnels</h3>
+                    <ul>
+                        <li>Me préparer aux métiers des réseaux</li>
+                        <li>Développer mes compétences techniques</li>
+                        <li>Acquérir une expérience professionnelle concrète</li>
+                        <li>Construire mon projet professionnel</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SAÉ (Situations d'Apprentissage et d'Évaluation) -->
+    <section id="sae" class="section">
+        <div class="container">
+            <h2>Apprentissages en Projet (SAÉ)</h2>
+            <p class="section-intro">Cette section constitue la partie la plus importante du portfolio. Chaque Projet (SAÉ) réalisé à l'IUT est analysé en lien avec les compétences et apprentissages critiques visés.</p>
+            
+            <div class="sae-container">
+                <!-- SAÉ 11 -->
+                <div class="sae-card">
+                    <div class="sae-header" onclick="toggleSAE('sae11-content')">
+                        <h3>SAÉ 11 - Sensibilisation à l'hygiène informatique et à la cybersécurité</h3>
+                        <span class="dropdown-arrow">▼</span>
+                    </div>
+                    <div class="sae-content" id="sae11-content">
+                        <div class="sae-info">
+                            <p><strong>Période :</strong> Octobre 2024</p>
+                            <p><strong>Compétence(s) visée(s) :</strong> Découvrir les services disponibles sur debian linux et apprentissage grâce au MOOC de L'ANSSI</p>
+                            <p><strong>Apprentissages critiques :</strong> Option du MOOC de L'ANSSI et exposé sur la Découverte de machines</p>
+                        </div>
+                        
+                        <h4>Description du projet</h4>
+                        <p>Travail de recherche et d'expérimentation : Décrire concrètement à partir de logiciels disponibles sur une distribution Debian comment réaliser les actions ci-dessous: Découvrir les machines du réseau, Découvrir les OS des machines du réseau (Fingerprint), Découvrir les services disponibles, Découvrir les logiciels utilisés, et si possible leur version</p>
+                        
+                        <h4>Mon rôle et contributions personnelles</h4>
+                        <p>J'ai réalisé la partie découverte des services disponibles et fini le MOOC de L'ANSSI</p>
+                        
+                        <h4>Traces et preuves</h4>
+                        <div class="traces-container">
+                            <div class="trace-item">
+                                <span class="trace-type">📄</span>
+                                <span class="trace-name">Rapport d'analyse des services</span>
+                            </div>
+                            <div class="trace-item">
+                                <span class="trace-type">🏆</span>
+                                <span class="trace-name">Certificat MOOC ANSSI</span>
+                            </div>
+                        </div>
+                        
+                        <h4>Analyse réflexive</h4>
+                        <div class="reflexion-container">
+                            <div class="reflexion-section">
+                                <h5>Ce que j'ai appris</h5>
+                                <p>J'ai appris sur la sécurité des machines au partage d'information et à la sensibilisation aux techniques de hacking</p>
+                            </div>
+                            <div class="reflexion-section">
+                                <h5>Difficultés rencontrées</h5>
+                                <p>Compréhension initiale des outils Linux et adaptation aux commandes de reconnaissance réseau</p>
+                            </div>
+                            <div class="reflexion-section">
+                                <h5>Auto-évaluation</h5>
+                                <p>J'ai appris et retenu beaucoup de choses techniques grâce à ce projet</p>
+                            </div>
+                            <div class="reflexion-section">
+                                <h5>Adaptabilité</h5>
+                                <p>Je pourrais donc faire en sorte de me protéger dans une entreprise pour garder mes données et faire de la prévention des travaux.</p>
+                            </div>
+                        </div>
+                    </div>
+                <!-- SAÉ 12 -->
+                <div class="sae-card">
+                    <div class="sae-header" onclick="toggleSAE('sae12-content')">
+                        <h3>SAÉ 12 - S'initier aux réseaux informatiques</h3>
+                        <span class="dropdown-arrow">▼</span>
+                    </div>
+                    <div class="sae-content" id="sae12-content">
+                        <div class="sae-info">
+                            <p><strong>Période :</strong> Novembre, Décembre 2024</p>
+                            <p><strong>Compétence(s) visée(s) :</strong> Programmation de switch, routeur, utilisation de serveur proxmox, utilisation de linux</p>
+                            <p><strong>Apprentissage(s) critiques :</strong> Configuration réseau avancée et sécurisation</p>
+                        </div>
+                        
+                        <h4>Description du projet</h4>
+                        <p>Objectif : Concevoir et mettre en œuvre un réseau informatique sécurisé et structuré pour une PME (Fibre&Company) en pleine expansion. Principales tâches : Configurez des VLANs, du routage inter-VLAN, du DHCP, et RSTP sur des commutateurs Cisco. Mettre en place un serveur Debian (VM) avec des services réseau (SMB, DNS, TFTP, site web, utilisateurs). Renforcez la sécurité des informations sur le réseau (accès SSH, accès SSH, VLAN non utilisé, désactivation Telnet ou et /HTTP, etc.). Faire des tests de fonctionnement et de débit (Iperf3).</p>
+                        
+                        <h4>Mon rôle et contributions personnelles</h4>
+                        <p>J’ai réalisé la partie programmation des switch 2960 et routeur dans le site web et aussi la réalisation d’un schéma logique de la maquette réseau.</p>
+                        
+                        <h4>Traces et preuves</h4>
+                        <div class="traces-container">
+                            <div class="trace-item">
+                                <span class="trace-type">📊</span>
+                                <div class="trace-name">Schéma logique réseau</div>
+                            </div>
+                            <div class="trace-item">
+                                <span class="trace-type">💻</span>
+                                <div class="trace-name">Configuration switch/routeur ou</div>
+                            </div>
+                            <div class="trace-item">
+                                <div class="trace-type">📋</div>
+                                <span class="trace-name">Tests de performance</span>
+                            </div>
+                        </div>
+                        
+                        <h4>Analyse réflexive</h4>
+                        <div class="reflexion-container">
+                            <div class="reflexion-section">
+                                <h5>Ce que j’ai appris</h5>
+                                <p>Configuration avancée des équipements Cisco ou, configurez la mise en place de VLANs, sécurisation réseau et tests de performance</p>
+                            </div>
+                            <div class="reflexion-section">
+                                <h5>Difficultés rencontrées</h5>
+                                <p>Manque de temps malgré l’organisation mise en place dans le groupe ou, complexité de la configuration RSTP</p>
+                            </div>
+                            <div class="reflexion-section">
+                                <h5>Auto-évaluation</h5>
+                                <p>Très bonne maîtrise acquise dans le domaine des équipements réseau et des protocoles de base</p>
+                            </div>
+                            <div class="reflexion-section">
+                                <h5>Adaptabilité</h5>
+                                <p>Compétences directement applicables en entreprise pour la configuration et la maintenance d’infrastructures réseau</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- SAÉ 14 -->
+                <div class="sae-card">
+                    <div class="sae-header" onclick="toggleSAE('sae14-content')">
+                        <h3>SAÉ 14 - Création de styles modernes pour une page web</h3>
+                        <span class="dropdown-arrow">▼</span>
+                    </div> 
+                    <div class="sae-content" id="sae14-content">
+                        <div class="sae-info">
+                            <p><strong>Période :</strong> Novembre 2024</p>
+                            <p><strong>Compétence(s) visée(s) :</strong> Développement de styles modernes et structurés pour le web</p>
+                            <p><strong>Apprentissages critiques :</strong> Utilisation de CSS avancé, responsive design et animations interactives</p>
+                        </div>
+                        
+                        <h4>Description du projet</h4>
+                        <p>Ce projet consistait à concevoir des styles modernes et bien structurés pour une page web. Le travail incluait :
+                            <ul>
+                                <li>Réinitialisation des styles : Marges et espacements uniformes pour une base propre sur tous les navigateurs, évitant les styles par défaut.</li>
+                                <li>Variables CSS : Utilisation de variables CSS pour gérer les couleurs, facilitant la maintenance et l’ajustement des styles globaux.</li>
+                                <li>Responsive Design : Implémentation de media queries pour adapter l’affichage sur mobiles, tablettes et ordinateurs, garantissant une expérience utilisateur optimale.</li>
+                                <li>Animations et interactivité : Création d’animations fluides (effets de survol, loader interactif) avec des transitions douces pour dynamiser la page.</li>
+                            </ul>
+                        </p>
+                        
+                        <h4>Mon rôle et contributions personnelles</h4>
+                        <p>J’ai conçu les styles CSS, implémenté les variables et media queries, et ajouté des animations pour améliorer l’interactivité de la page.</p>
+                        
+                        <h4>Traces et preuves</h4>
+                        <div class="traces-container">
+                            <div class="trace-item">
+                                <span class="trace-type">📄</span>
+                                <span class="trace-name"><a href="https://github.com/Remi-Larose/SAE14">Dépôt GitHub SAÉ 14</a></span>
+                            </div>
+                            <div class="trace-item">
+                                <span class="trace-type">💻</span>
+                                <span class="trace-name"><a>Code source disponible sur la page github</a></span>
+                            </div>
+                        </div>
+                        
+                        <h4>Analyse réflexive</h4>
+                        <div class="reflexion-container">
+                            <div class="reflexion-section">
+                                <h5>Ce que j’ai appris</h5>
+                                <p>Maîtrise des techniques modernes de CSS, y compris les variables, le responsive design et les animations fluides.</p>
+                            </div>
+                            <div class="reflexion-section">
+                                <h5>Difficultés rencontrées</h5>
+                                <p>Assurer la compatibilité des styles sur différents navigateurs et optimiser les animations pour des performances fluides.</p>
+                            </div>
+                            <div class="reflexion-section">
+                                <h5>Auto-évaluation</h5>
+                                <p>Acquisition réussie de compétences en design web moderne et structuré.</p>
+                            </div>
+                            <div class="reflexion-section">
+                                <h5>Adaptabilité</h5>
+                                <p>Compétences applicables au développement de sites web professionnels et à l’amélioration de l’expérience utilisateur.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SAÉ 15 -->
+                <div class="sae-card">
+                    <div class="sae-header" onclick="toggleSAE('sae15-content')">
+                        <h3>SAÉ 15 - Développement d’une application web avec l’API Pokémon</h3>
+                        <span class="dropdown-arrow">▼</span>
+                    </div>
+                    <div class="sae-content" id="sae15-content">
+                        <div class="sae-info">
+                            <p><strong>Période :</strong> Décembre 2024</p>
+                            <p><strong>Compétence(s) visée(s) :</strong> Utilisation d’API web, programmation en Python et HTML</p>
+                            <p><strong>Apprentissages critiques :</strong> Intégration d’API RESTful, développement d’interfaces web dynamiques</p>
+                        </div>
+                        
+                        <h4>Description du projet</h4>
+                        <p>Ce projet consistait à développer une application web utilisant l’API Pokémon pour afficher des informations sur les Pokémon. Les tâches incluaient :
+                            <ul>
+                                <li>Intégration de l’API : Utilisation de l’API Pokémon pour récupérer des données (noms, types, statistiques) via des requêtes HTTP en Python.</li>
+                                <li>Développement web : Création d’une interface HTML/CSS pour afficher les données de manière claire et interactive.</li>
+                                <li>Programmation backend : Utilisation de Python (avec Flask ou FastAPI) pour gérer les requêtes API et servir les données à l’interface.</li>
+                                <li>Interactivité : Ajout de fonctionnalités comme la recherche de Pokémon et l’affichage dynamique des résultats.</li>
+                            </ul>
+                        </p>
+                        
+                        <h4>Mon rôle et contributions personnelles</h4>
+                        <p>J’ai développé le backend Python pour interroger l’API Pokémon et conçu l’interface HTML pour afficher les résultats de manière dynamique.</p>
+                        
+                        <h4>Traces et preuves</h4>
+                        <div class="traces-container">
+                            <div class="trace-item">
+                                <span class="trace-type">📄</span>
+                                <span class="trace-name"><a href="https://github.com/Remi-Larose/SAE15">Dépôt GitHub SAÉ 15</a></span>
+                            </div>
+                            <div class="trace-item">
+                                <span class="trace-type">💻</span>
+                                <span class="trace-name"><a>Python/HTML</a></span>
+                            </div>
+                        </div>
+                        
+                        <h4>Analyse réflexive</h4>
+                        <div class="reflexion-container">
+                            <div class="reflexion-section">
+                                <h5>Ce que j’ai appris</h5>
+                                <p>Compréhension des API RESTful, développement full-stack avec Python et HTML, et gestion de données dynamiques.</p>
+                            </div>
+                            <div class="reflexion-section">
+                                <h5>Difficultés rencontrées</h5>
+                                <p>Gestion des erreurs d’API et optimisation de l’affichage des données sur l’interface utilisateur.</p>
+                            </div>
+                            <div class="reflexion-section">
+                                <h5>Auto-évaluation</h5>
+                                <p>Bonne maîtrise des bases du développement web avec API et création d’interfaces dynamiques.</p>
+                            </div>
+                            <div class="reflexion-section">
+                                <h5>Adaptabilité</h5>
+                                <p>Compétences transférables à d’autres projets de développement web utilisant des API externes.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SAÉ 21 -->
+                <div class="sae-card">
+                    <div class="sae-header" onclick="toggleSAE('sae21-content')">
+                        <h3>SAÉ 21 - Certification Cisco et initiation à Active Directory</h3>
+                        <span class="dropdown-arrow">▼</span>
+                    </div>
+                    <div class="sae-content" id="sae21-content">
+                        <div class="sae-info">
+                            <p><strong>Période :</strong> Mars 2025</p>
+                            <p><strong>Compétence(s) visée(s) :</strong> Administration réseau, certification Cisco, gestion d’Active Directory</p>
+                            <p><strong>Apprentissages critiques :</strong> Obtention de la certification Cisco et maîtrise des bases d’Active Directory</p>
+                        </div>
+                        
+                        <h4>Description du projet</h4>
+                        <p>Ce projet portait sur l’obtention d’une certification Cisco (score de 74%) et une initiation à l’administration de systèmes Windows via Active Directory. Les tâches incluaient :
+                            <ul>
+                                <li>Certification Cisco : Préparation et validation des connaissances en configuration réseau (commutateurs, routeurs, protocoles).</li>
+                                <li>Active Directory : Mise en place et gestion d’un domaine Active Directory, incluant la création d’utilisateurs, groupes et politiques de sécurité.</li>
+                                <li>Administration système : Configuration de services réseau sur Windows Server.</li>
+                            </ul>
+                        </p>
+                        
+                        <h4>Mon rôle et contributions personnelles</h4>
+                        <p>J’ai préparé et obtenu la certification Cisco et configuré un domaine Active Directory avec des utilisateurs et des politiques de sécurité.</p>
+                        
+                        <h4>Traces et preuves</h4>
+                        <div class="traces-container">
+                            <div class="trace-item">
+                                <span class="trace-type">🏆</span>
+                                <span class="trace-name"><a href="#">Certificat Cisco (74%)</a></span>
+                            </div>
+                            <div class="trace-item">
+                                <span class="trace-type">🔧</span>
+                                <span class="trace-name"><a>Configuration Active Directory</a></span>
+                            </div>
+                        </div>
+                        
+                        <h4>Analyse réflexive</h4>
+                        <div class="reflexion-container">
+                            <div class="reflexion-section">
+                                <h5>Ce que j’ai appris</h5>
+                                <p>Compétences avancées en configuration réseau Cisco et bases de l’administration système Windows.</p>
+                            </div>
+                            <div class="reflexion-section">
+                                <h5>Difficultés rencontrées</h5>
+                                <p>Compréhension des concepts complexes d’Active Directory et préparation intensive pour la certification.</p>
+                            </div>
+                            <div class="reflexion-section">
+                                <h5>Auto-évaluation</h5>
+                                <p>Bonne progression dans la maîtrise des technologies réseau et système.</p>
+                            </div>
+                            <div class="reflexion-section">
+                                <h5>Adaptabilité</h5>
+                                <p>Compétences applicables à l’administration de réseaux et systèmes en entreprise.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SAÉ 23 -->
+                <div class="sae-card">
+                    <div class="sae-header" onclick="toggleSAE('sae23-content')">
+                        <h3>SAÉ 23 - Développement d’une application web avec l’API météo</h3>
+                        <span class="dropdown-arrow">▼</span>
+                    </div>
+                    <div class="sae-content" id="sae23-content">
+                        <div class="sae-info">
+                            <p><strong>Période :</strong> Avril-Mai 2025</p>
+                            <p><strong>Compétence(s) visée(s) :</strong> Utilisation d’API météo, développement web</p>
+                            <p><strong>Apprentissages critiques :</strong> Intégration d’API météo, création d’interfaces dynamiques</p>
+                        </div>
+                        
+                        <h4>Description du projet</h4>
+                        <p>Ce projet consistait à développer une application web utilisant une API météo pour afficher des prévisions météorologiques. Les tâches incluaient :
+                            <ul>
+                                <li>Intégration de l’API : Utilisation d’une API météo pour récupérer des données (température, humidité, prévisions).</li>
+                                <li>Développement web : Création d’une interface HTML/CSS pour afficher les données météo de manière claire et attrayante.</li>
+                                <li>Programmation backend : Utilisation de JavaScript ou Python pour gérer les requêtes API et traiter les données.</li>
+                                <li>Interactivité : Ajout de fonctionnalités comme la recherche par ville et l’affichage des prévisions à plusieurs jours.</li>
+                            </ul>
+                        </p>
+                        
+                        <h4>Mon rôle et contributions personnelles</h4>
+                        <p>J’ai développé le frontend pour afficher les données météo et intégré l’API pour récupérer les informations en temps réel.</p>
+                        
+                        <h4>Traces et preuves</h4>
+                        <div class="traces-container">
+                            <div class="trace-item">
+                                <span class="trace-type">📄</span>
+                                <span class="trace-name"><a href="https://github.com/Remi-Larose/SAE23">Dépôt GitHub SAÉ 23</a></span>
+                            </div>
+                            <div class="trace-item">
+                                <span class="trace-type">💻</span>
+                                <span class="trace-name"><a href="https://remi-larose.github.io/SAE23/">Code source HTML/JavaScript</a></span>
+                            </div>
+                        </div>
+                        
+                        <h4>Analyse réflexive</h4>
+                        <div class="reflexion-container">
+                            <div class="reflexion-section">
+                                <h5>Ce que j’ai appris</h5>
+                                <p>Maîtrise de l’intégration d’API météo et développement d’interfaces web dynamiques.</p>
+                            </div>
+                            <div class="reflexion-section">
+                                <h5>Difficultés rencontrées</h5>
+                                <p>Gestion des données en temps réel et optimisation de l’affichage pour différents appareils.</p>
+                            </div>
+                            <div class="reflexion-section">
+                                <h5>Auto-évaluation</h5>
+                                <p>Acquisition réussie de compétences en développement web avec API externes.</p>
+                            </div>
+                            <div class="reflexion-section">
+                                <h5>Adaptabilité</h5>
+                                <p>Compétences transférables à d’autres projets nécessitant l’intégration de données en temps réel.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projection -->
+    <section id="projection" class="section bg-light">
+        <div class="container">
+            <h2>Projection et bilan</h2>
+            <div class="projection-content">
+                <div class="bilan-global">
+                    <h3>Évaluation globale de mon portfolio</h3>
+                    <div class="bilan-sections">
+                        <div class="bilan-section">
+                            <h4>Travail accompli</h4>
+                            <p>Tout au long de ma première année en BUT R&T, j’ai développé des compétences techniques solides en administration réseau, cybersécurité et télécommunications. Les différentes SAÉ m’ont permis d’acquérir une vision complète des métiers du réseau, de la configuration d’équipements à la sensibilisation aux enjeux environnementaux du numérique.</p>
+                        </div>
+                        
+                        <div class="bilan-section">
+                            <h4>Progrès réalisés</h4>
+                            <p>Ma progression a été constante et significative. Parti d’un niveau initial avec mon bac STI2D option SIN, j’ai développé une expertise technique approfondie et une meilleure compréhension des enjeux professionnels. Mon autonomie s’est considérablement renforcée, et je suis maintenant capable de mener des projets techniques complexes.</p>
+                        </div>
+                        
+                        <div class="bilan-section">
+                            <h4>Compétences acquises</h4>
+                            <div class="competences-bilan">
+                                <div class="competence-level">
+                                    <span>Administrer les réseaux et l’internet</span>
+                                    <div class="level-bar">
+                                        <div class="level-fill" style="width: 80%"></div>
+                                    </div>
+                                </div>
+                                <div class="competence-level">
+                                    <span>Connecter les entreprises et les usages</span>
+                                    <div class="level-bar">
+                                        <div class="level-fill" style="width: 75%"></div>
+                                    </div>
+                                </div>
+                                <div class="competence-level">
+                                    <span>Créer des outils et applications</span>
+                                    <div class="level-bar">
+                                        <div class="level-fill" style="width: 70%"></div>
+                                    </div>
+                                </div>
+                                <div class="competence-level">
+                                    <span>Travail en autonomie</span>
+                                    <div class="level-bar">
+                                        <div class="level-fill" style="width: 85%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="bilan-section">
+                            <h4>Perspectives d’avenir</h4>
+                            <p>Mon projet professionnel s’oriente clairement vers la cybersécurité. Je souhaite approfondir mes connaissances dans le domaine de la sécurité informatique, notamment à travers les CTF et Root Me. Mon objectif est de poursuivre vers une spécialisation en cybersécurité, soit par la poursuite d’études soit par une insertion professionnelle dans ce secteur en forte demande.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2025 Portfolio BUT Réseaux et Télécommunications - Rémi Larose</p>
+            <p>Mise à jour régulière</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Toggle SAE dropdown
+        function toggleSAE(contentId) {
+            const content = document.getElementById(contentId);
+            const header = content.previousElementSibling;
+            const arrow = header.querySelector('.dropdown-arrow');
+            
+            if (content.classList.contains('active')) {
+                // Fermer
+                content.classList.remove('active');
+                arrow.style.transform = 'rotate(0deg)';
+                header.parentElement.classList.remove('active');
+            } else {
+                // Fermer tous les autres d'abord
+                document.querySelectorAll('.sae-content.active').forEach(otherContent => {
+                    otherContent.classList.remove('active');
+                    const otherArrow = otherContent.previousElementSibling.querySelector('.dropdown-arrow');
+                    otherArrow.style.transform = 'rotate(0deg)';
+                    otherContent.parentElement.classList.remove('active');
+                });
+                
+                // Ouvrir celui-ci
+                content.classList.add('active');
+                arrow.style.transform = 'rotate(180deg)';
+                header.parentElement.classList.add('active');
+            }
+        }
+
+        // Animation des barres de compétences au scroll
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const competenceBars = entry.target.querySelectorAll('.level-fill');
+                    competenceBars.forEach(bar => {
+                        const width = bar.style.width;
+                        bar.style.width = '0%';
+                        setTimeout(() => {
+                            bar.style.width = width;
+                        }, 200);
+                    });
+                }
+            });
+        }, observerOptions);
+
+        // Observer les sections de compétences
+        document.addEventListener('DOMContentLoaded', function() {
+            const competencesSection = document.querySelector('.competences-bilan');
+            if (competencesSection) {
+                observer.observe(competencesSection);
+            }
+            
+            // Ouvrir la première SAÉ par défaut
+            const firstSAE = document.getElementById('sae11-content');
+            if (firstSAE) {
+                firstSAE.classList.add('active');
+                const arrow = firstSAE.previousElementSibling.querySelector('.dropdown-arrow');
+                if (arrow) {
+                    arrow.style.transform = 'rotate(180deg)';
+                }
+                firstSAE.parentElement.classList.add('active');
+            }
+        });
+
+        // Effet de parallaxe léger pour le hero
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('#accueil');
+            if (hero) {
+                hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+    </script>
+</body>
+</html>
